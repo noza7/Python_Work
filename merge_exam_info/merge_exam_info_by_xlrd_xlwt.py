@@ -1,6 +1,6 @@
 import xlwt
 
-from 合并通知单.lib.func import get_filenames, get_students_exam_info_data
+from merge_exam_info.lib.func import get_filenames, get_students_exam_info_data
 # from openpyxl import load_workbook
 import xlrd
 from xlutils.copy import copy
