@@ -1,6 +1,8 @@
 import os
 from xml.dom.minidom import parse
 
+from openpyxl import load_workbook
+
 
 def get_filenames(file_dir):
     '''
@@ -75,3 +77,39 @@ def get_students_exam_info_data(filenames, path):
         for i in get_students_data(path, filename):
             stu_ls_.append(i)
     return stu_ls_
+
+
+def from_computer_course_info_get_students_data(path='计算机应用基础模板.xlsx', sheet_name='计算机应用基础模板'):
+    '''
+    获取“计算机应用基础”考生信息
+    :param path: 计算机应用基础excel表所在路径
+    :param sheet_name: 表名
+    :return: 学生信息列表
+    '''
+    ls = []
+    wb = load_workbook(path)
+    rows = wb[sheet_name].max_row
+    for i in range(2, rows + 1):
+        ls_ = []
+        # 座位号
+        exam_seat = wb[sheet_name][f'A{i}'].value
+        # 机房
+        exam_room = wb[sheet_name][f'C{i}'].value
+        # 考试日期时间
+        exam_date_and_time = wb[sheet_name][f'D{i}'].value
+        # 考试日期
+        exam_date = exam_date_and_time.split(' ')[0]
+        # 考试时间
+        exam_time = exam_date_and_time.split(' ')[1]
+        # 学号
+        exam_code = wb[sheet_name][f'E{i}'].value
+        # 姓名
+        exam_name = wb[sheet_name][f'F{i}'].value
+        ls_.append(exam_code)
+        ls_.append(exam_room)
+        ls_.append(exam_seat)
+        ls_.append('1200')
+        ls_.append(exam_date)
+        ls_.append(exam_time)
+        ls.append(ls_)
+    return ls
