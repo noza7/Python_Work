@@ -10,7 +10,7 @@ layout = [[sg.Text('选择xml文件夹')], [sg.Input(), sg.FolderBrowse('浏览'
           [sg.Text('处理进度')], [sg.ProgressBar(1000, orientation='h', size=(40, 20), key='progressbar')],
           [sg.Button(' 开始处理 '), sg.Button('      关闭      ')]]
 
-window = sg.Window('合并考试通知单(xlrd and xlutils 版)', layout, icon='icon/bomb64.ico')
+window = sg.Window('合并考试通知单(xlrd and xlutils 版)', layout, icon='icon/puple128.ico')
 # 进度条
 progress_bar = window['progressbar']
 while True:
