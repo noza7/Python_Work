@@ -1,4 +1,4 @@
-from merge_exam_info.lib.func import get_filenames, get_students_exam_info_data, \
+from lib.func import get_filenames, get_students_exam_info_data, \
     from_computer_course_info_get_students_data
 import xlrd
 from xlutils.copy import copy
@@ -8,14 +8,14 @@ layout = [[sg.Text('选择xml文件夹')], [sg.Input(), sg.FolderBrowse('浏览'
           [sg.Text('选择"计算机应用基础"excel文件')], [sg.Input(), sg.FileBrowse('浏览')],
           [sg.Text('选择"考试通知单"excel文件')], [sg.Input(), sg.FileBrowse('浏览')],
           [sg.Text('处理进度')], [sg.ProgressBar(1000, orientation='h', size=(40, 20), key='progressbar')],
-          [sg.Button(' 开始处理 '), sg.Button('      关闭      ')]]
+          [sg.Button('开始处理', size=(10, 1)), sg.Button('关闭', size=(10, 1))]]
 
 window = sg.Window('合并考试通知单(xlrd and xlutils 版)', layout, icon='icon/puple128.ico')
 # 进度条
 progress_bar = window['progressbar']
 while True:
     event, values = window.read()
-    if event in (None, '      关闭      '):
+    if event in (None, '关闭'):
         break
     try:
         # 获取指定文件夹下所有xml文件名列表
